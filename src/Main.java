@@ -3,7 +3,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.println("Введите слова через пробел: ");
+        System.out.println("Input words: ");
         String text = in.nextLine().toLowerCase();
         System.out.println(text);
         String[] words = text.split(" ");
