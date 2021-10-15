@@ -1,21 +1,27 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Input words: ");
         String text = in.nextLine().toLowerCase();
-        System.out.println(text);
+        System.out.println("\nList of your words: " + text);
         String[] words = text.split(" ");
 
-        Set<String> words2 = new HashSet<>();
-//        Set<Character> words3 = new HashSet<>();
-        String a ;
+        Set<String> uniqueWords = new HashSet<String>(Arrays.asList(words));
         for (String i : words) {
-            a = sortString(i);
-            words2.add(a);
+            uniqueWords.add(i);
         }
-        System.out.println(words2);
+
+        System.out.println("\nList of unique:" + uniqueWords);
+
+        Set<String> uniqeSortWords = uniqueWords.stream()
+                .map(item -> sortString(item))
+                .collect(Collectors.toSet());
+        Integer quantityOfAnagrams = uniqueWords.size() - uniqeSortWords.size();
+
+        System.out.printf("\nQuantity of anagrams: " + String.valueOf(quantityOfAnagrams));
     }
 
     public static String sortString(String inputString) {
@@ -24,5 +30,6 @@ public class Main {
 
         return new String(tempArray);
     }
+
 
 }
